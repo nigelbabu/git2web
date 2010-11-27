@@ -152,7 +152,11 @@ td.actions a:hover {
 	background: #D2E7F4;
 	padding: 0px 30px;
 }
+.rightnav {
+    float: right;
+}
 .indexlist {
+    clear: both;
     width: 800px;
     margin: 0 auto;
     overflow: auto;
