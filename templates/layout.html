@@ -2,24 +2,26 @@
 <html lang="en">
 <head>
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
-    <title>Git2Web</title>
+    <title>Git2Web :: {{title}}</title>
 </head>
 <body>
     <div class="wrapper">
         <div id="header">
-            <h1>Index</h1>
+            <h1>{{title}}</h1>
         </div>
-        <div class="rightnav">
-          {% if not session.logged_in %}
-            <a href="{{ url_for('login') }}">log in</a>
-          {% else %}
-            <a href="{{ url_for('logout') }}">log out</a>
-          {% endif %}
+        <div class="indexlist">
+            <div class="rightnav">
+              {% if not session.logged_in %}
+                <a href="{{ url_for('login') }}">log in</a>
+              {% else %}
+                <a href="{{ url_for('logout') }}">log out</a>
+              {% endif %}
+            </div>
+              {% for message in get_flashed_messages() %}
+                <div class=flash>{{ message }}</div>
+              {% endfor %}
+              {% block body %}{% endblock %}
         </div>
-          {% for message in get_flashed_messages() %}
-            <div class=flash>{{ message }}</div>
-          {% endfor %}
-          {% block body %}{% endblock %}
     </div>
 </body>
 </html>

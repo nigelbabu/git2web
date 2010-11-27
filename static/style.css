@@ -141,6 +141,18 @@ td.actions a:hover {
 	background: #f0f09a;
 	background: -webkit-gradient(linear, left top, left bottom, from(#f7f7e1), to(#eeeca9));
 }
+/** Flash Messages **/
+.flash {
+    background: #CEE5F5;
+    padding: 0.5em;
+    border: 1px solid #AACBE2;
+    clear: both;
+}
+.error {
+    background: #F0D6D6; 
+    padding: 0.5em;
+    clear: both;
+}
 /** Layouts **/
 .wrapper {
     background-color: #fff;

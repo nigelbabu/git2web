@@ -33,7 +33,7 @@ def index():
     config = ConfigParser.ConfigParser()
     config.read(path_to_conf())
     list_of_members()
-    return render_template('index.html', config=config)
+    return render_template('index.html', config=config, title="Git2Web")
 
 # individual groups
 @app.route('/group/<groupname>')
@@ -53,7 +53,7 @@ def login():
             session['logged_in'] = True
             flash('You were logged in')
             return redirect('/')
-    return render_template('login.html', error=error)
+    return render_template('login.html', error=error, title="Login")
 
 @app.route('/logout')
 def logout():
