@@ -48,6 +48,13 @@ def showgroup(groupname):
         return redirect('/')
     return render_template('group.html', config=config,  group=groupname, section=section)
 
+#display people
+@app.route('/people')
+def showpeople():
+    if not session.get('logged_in'):
+        return redirect(url_for('login'))
+    return render_template('persons.html', names=list_of_members())
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     error = None

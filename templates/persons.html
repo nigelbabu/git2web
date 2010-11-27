@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
-{% block title %}{{group}}{% endblock %}
-{% block head %}{{group}}{% endblock %}
+{% block title %}People List{% endblock %}
+{% block head %}People List{% endblock %}
 {% block body %}
         <table>
             <tr>
@@ -8,7 +8,7 @@
                 <th>Name</th>
                 <th>Actions</th>
             </tr>
-    {% for member in config.get(section, 'members').split() %}
+    {% for member in names %}
     <tr>
         <td>{{ loop.index }}</td>
         <td>{{ member }}</td>

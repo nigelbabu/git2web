@@ -11,10 +11,11 @@
         </div>
         <div class="indexlist">
             <div class="rightnav">
-              {% block back %}{% endblock %}
               {% if not session.logged_in %}
                 <a href="{{ url_for('login') }}">Log In</a>
               {% else %}
+                <a href="{{ url_for('index') }}">Repositories</a>
+                <a href="{{ url_for('showpeople') }}">People</a>
                 <a href="{{ url_for('logout') }}">Logout</a>
               {% endif %}
             </div>
