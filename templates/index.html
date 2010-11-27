@@ -7,9 +7,6 @@
     {% for section in config.sections() %}
     {% if section != 'group gitosis-admin' and section != 'gitosis' %}
     <p>{{ section }}</p>
-    {% for option in config.options(section): %}
-        <p>  {{ option }} = {{config.get(section, option)}}
-    {% endfor %}
     {% endif %}
     {% endfor %}
 </body>
