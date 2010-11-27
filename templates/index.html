@@ -1,13 +1,37 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html lang="en">
 <head>
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
     <title>Git2Web</title>
 </head>
 <body>
-    {% for section in config.sections() %}
-    {% if section != 'group gitosis-admin' and section != 'gitosis' %}
-    <p>{{ section }}</p>
-    {% endif %}
-    {% endfor %}
+    <div class="wrapper">
+        <div id="header">
+            <h1>Index</h1>
+        </div>
+        <div class="indexlist">
+            <table>
+                <tr>
+                    <th>Id</th>
+                    <th>Group</th>
+                    <th>Actions</th>
+                <tr>
+            {% for section in config.sections() if section not in ['group gitosis-admin','gitosis'] %}
+            <tr>
+                <td>{{loop.index}}</td>
+                <td>{{ section.partition('group ').2 }}</a></td>
+                <td class="actions"><a href="group/{{ section.partition('group ').2 }}">Edit</a></td>
+            {% endfor %}
+            </table>
+            <div class="actionlist">
+                <div class="actions">
+                    <ul>
+                        <li><a href="#">Add Group</a></li>
+                </div>
+            </div>
+            <div class="footer">Git2Web &copy; Nigel Babu 2010
+            </div>
+        </div>
+    </div>
 </body>
 </html>
