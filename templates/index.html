@@ -1,0 +1,16 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="en">
+<head>
+    <title>Git2Web</title>
+</head>
+<body>
+    {% for section in config.sections() %}
+    {% if section != 'group gitosis-admin' and section != 'gitosis' %}
+    <p>{{ section }}</p>
+    {% for option in config.options(section): %}
+        <p>  {{ option }} = {{config.get(section, option)}}
+    {% endfor %}
+    {% endif %}
+    {% endfor %}
+</body>
+</html>
