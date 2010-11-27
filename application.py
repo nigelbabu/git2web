@@ -33,14 +33,19 @@ def index():
     config = ConfigParser.ConfigParser()
     config.read(path_to_conf())
     list_of_members()
-    return render_template('index.html', config=config, title="Git2Web")
+    return render_template('index.html', config=config)
 
 # individual groups
 @app.route('/group/<groupname>')
 def showgroup(groupname):
+    if not session.get('logged_in'):
+        return redirect(url_for('login'))
     config = ConfigParser.ConfigParser()
     config.read(path_to_conf())
     section = 'group ' + groupname
+    if section not in config.sections():
+        flash('Group not found')
+        return redirect('/')
     return render_template('group.html', config=config,  group=groupname, section=section)
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -53,7 +58,7 @@ def login():
             session['logged_in'] = True
             flash('You were logged in')
             return redirect('/')
-    return render_template('login.html', error=error, title="Login")
+    return render_template('login.html', error=error)
 
 @app.route('/logout')
 def logout():

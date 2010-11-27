@@ -177,6 +177,9 @@ td.actions a:hover {
     width: 100px;
     float: right;
 }
+.group {
+    clear: both;
+}
 .footer {
     clear: both;
     font-size: 10px;

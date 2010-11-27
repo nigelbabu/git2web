@@ -1,7 +1,26 @@
 {% extends "layout.html" %}
+{% block title %}{{group}}{% endblock %}
+{% block head %}{{group}}{% endblock %}
+{% block back %}<a href="/">Back</a>{% endblock %}
 {% block body %}
-    <h1>Git2Web - {{ group }}</h1>
-    {% for option in config.options(section) %}
-    <p> {{ option }} = {{ config.get(section, option) }}
+        <table>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+    {% for member in config.get(section, 'members').split() %}
+    <tr>
+        <td>{{ loop.index }}</td>
+        <td>{{ member }}</td>
+        <td class="actions"><a href="#">Delete</a></td>
+    </tr>
     {% endfor %}
+    </table>
+    <div class="actionlist">
+        <div class="actions">
+            <ul>
+                <li><a href="#">Add Team</a></li>
+        </div>
+    </div>
 {% endblock %}

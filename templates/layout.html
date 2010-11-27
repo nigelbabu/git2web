@@ -2,25 +2,27 @@
 <html lang="en">
 <head>
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
-    <title>Git2Web :: {{title}}</title>
+    <title>Git2Web :: {% block title %}{% endblock %}</title>
 </head>
 <body>
     <div class="wrapper">
         <div id="header">
-            <h1>{{title}}</h1>
+            <h1>{% block head %}{% endblock %}</h1>
         </div>
         <div class="indexlist">
             <div class="rightnav">
+              {% block back %}{% endblock %}
               {% if not session.logged_in %}
-                <a href="{{ url_for('login') }}">log in</a>
+                <a href="{{ url_for('login') }}">Log In</a>
               {% else %}
-                <a href="{{ url_for('logout') }}">log out</a>
+                <a href="{{ url_for('logout') }}">Logout</a>
               {% endif %}
             </div>
               {% for message in get_flashed_messages() %}
                 <div class=flash>{{ message }}</div>
               {% endfor %}
               {% block body %}{% endblock %}
+            <div class="footer">Git2Web &copy; Nigel Babu 2010</div>
         </div>
     </div>
 </body>
