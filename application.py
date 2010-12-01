@@ -12,6 +12,7 @@ DEBUG = True
 SECRET_KEY = 'asdkfnkq2o428yoidnhjlabsndfkdbsad'
 USERNAME = 'admin'
 PASSWORD = 'pass123'
+MAX_CONTENT_LENGTH = 16 * 1024 * 1024
 
 app = Flask(__name__)
 app.config.from_object(__name__)
@@ -63,8 +64,13 @@ def add_persons():
         return redirect(url_for('login'))
     if request.method == 'POST':
         f = request.files['key_file']
-        f.save(app.config['GITOSIS_PATH'] + 'keydir/' + secure_filename(f.filename))
-        flash('Key uploaded')
+        filename = secure_filename(f.filename)
+        if filename.rsplit('.', 1)[1] == 'pub':
+            filepath = os.path.join(app.config['GITOSIS_PATH'], 'keydir', filename)
+            f.save(filepath)
+            flash('Key uploaded')
+        else:
+            flash('Please upload a valid key')
         return redirect(url_for('showpeople'))
     return render_template('add_persons.html')
 
