@@ -55,7 +55,9 @@ def showgroup(groupname):
 def showpeople():
     if not session.get('logged_in'):
         return redirect(url_for('login'))
-    return render_template('persons.html', names=list_of_members())
+    names = list_of_members()
+    names.sort()
+    return render_template('persons.html', names=names)
 
 #add people
 @app.route('/people/add', methods=['GET', 'POST'])
@@ -80,7 +82,16 @@ def add_persons():
 #delete people
 @app.route('/people/del/<name>')
 def delete_person(name):
-    pass
+    keyfile = name + '.pub'
+    keypath = os.path.join(app.config['GITOSIS_PATH'], 'keydir', keyfile)
+    if os.path.exists(keypath):
+        if not os.remove(keypath):
+            flash(name + ' deleted sucessfully')
+        else:
+            flash('Could not delete ' + name)
+    else:
+        flash('Unknown person')
+    return redirect(url_for('showpeople'))
 #login
 @app.route('/login', methods=['GET', 'POST'])
 def login():
