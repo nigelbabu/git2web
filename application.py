@@ -65,13 +65,16 @@ def add_persons():
     if request.method == 'POST':
         f = request.files['key_file']
         filename = secure_filename(f.filename)
+        filepath = os.path.join(app.config['GITOSIS_PATH'], 'keydir', filename)
         if filename.rsplit('.', 1)[1] == 'pub':
-            filepath = os.path.join(app.config['GITOSIS_PATH'], 'keydir', filename)
-            f.save(filepath)
-            flash('Key uploaded')
+            if not os.path.exists(filepath):
+                f.save(filepath)
+                flash('Key uploaded')
+            else:
+                flash('Key with same name already exists!')
         else:
             flash('Please upload a valid key')
-        return redirect(url_for('showpeople'))
+            return redirect(url_for('showpeople'))
     return render_template('add_persons.html')
 
 #login

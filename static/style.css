@@ -119,6 +119,7 @@ div.actions ul li a:hover {
 }
 
 input[type=submit],
+.cancel,
 div.actions ul li a,
 td.actions a {
 	font-weight:normal;
@@ -134,6 +135,7 @@ td.actions a {
 	text-decoration:none;
 	text-shadow: #fff 0px 1px 0px;
 	min-width: 0;
+	margin-right: 5px;
 }
 input[type=submit]:hover,
 div.actions ul li a:hover,
@@ -147,6 +149,7 @@ td.actions a:hover {
     padding: 0.5em;
     border: 1px solid #AACBE2;
     clear: both;
+    margin-bottom: 10px;
 }
 .error {
     background: #F0D6D6; 
@@ -166,6 +169,7 @@ td.actions a:hover {
 }
 .rightnav {
     float: right;
+    margin-bottom: 10px;
 }
 .indexlist {
     clear: both;
