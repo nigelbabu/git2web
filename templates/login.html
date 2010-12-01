@@ -3,15 +3,15 @@
 {% block head %}Login{% endblock %}
 {% block body %}
   {% if error %}<p class=error><strong>Error:</strong> {{ error }}{% endif %}
-  <form action="{{ url_for('login') }}" method=post>
+  <form action="{{ url_for('login') }}" method="post">
     <dl>
       <dt>Username:</dt>
-      <dd><input type=text name=username></dd>
+      <dd><input type="text" name="username"></dd>
       <dd>&nbsp;</dd>
       <dt>Password:</dt>
-      <dd><input type=password name=password></dd>
+      <dd><input type="password" name="password"></dd>
       <dd>&nbsp;</dd>
-      <dd><input type=submit value=Login></dd>
+      <dd><input type="submit" value="Login"></dd>
       <dd>&nbsp;</dd>
     </dl>
   </form>

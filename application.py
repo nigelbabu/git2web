@@ -4,6 +4,7 @@ import ConfigParser
 import os
 from flask import Flask, request, session, g, redirect, url_for, \
      abort, render_template, flash
+from werkzeug import secure_filename
 
 # configuration
 GITOSIS_PATH = ''
@@ -25,7 +26,7 @@ def list_of_members():
     path_to_key = os.path.join(path, 'keydir')
     return map(lambda x: x.split('.pub')[0], os.listdir(path_to_key))
 
-# index
+# index, project list
 @app.route('/')
 def index():
     if not session.get('logged_in'):
@@ -55,6 +56,18 @@ def showpeople():
         return redirect(url_for('login'))
     return render_template('persons.html', names=list_of_members())
 
+#add people
+@app.route('/people/add')
+def add_persons():
+    if not session.get('logged_in'):
+        return redirect(url_for('login'))
+    if request.method == 'POST':
+        f = request.files['key_file']
+        f.save(app.config['GITOSIS_PATH'] + 'keydir' + secure_filename(f.filename))
+        flash('Key uploaded')
+    return render_template('add_persons')
+
+#login
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     error = None
@@ -67,6 +80,7 @@ def login():
             return redirect('/')
     return render_template('login.html', error=error)
 
+#logout
 @app.route('/logout')
 def logout():
     session.pop('logged_in', None)
