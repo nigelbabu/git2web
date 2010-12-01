@@ -77,6 +77,10 @@ def add_persons():
             return redirect(url_for('showpeople'))
     return render_template('add_persons.html')
 
+#delete people
+@app.route('/people/del/<name>')
+def delete_person(name):
+    pass
 #login
 @app.route('/login', methods=['GET', 'POST'])
 def login():

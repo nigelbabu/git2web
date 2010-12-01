@@ -12,7 +12,7 @@
     <tr>
         <td>{{ loop.index }}</td>
         <td>{{ member }}</td>
-        <td class="actions"><a href="#">Delete</a></td>
+        <td class="actions"><a href="{{ url_for('delete_person', name=member) }}">Delete</a></td>
     </tr>
     {% endfor %}
     </table>
