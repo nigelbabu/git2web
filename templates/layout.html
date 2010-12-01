@@ -11,9 +11,7 @@
         </div>
         <div class="indexlist">
             <div class="rightnav">
-              {% if not session.logged_in %}
-                <a href="{{ url_for('login') }}">Log In</a>
-              {% else %}
+              {% if session.logged_in %}
                 <a href="{{ url_for('index') }}">Repositories</a>
                 <a href="{{ url_for('showpeople') }}">People</a>
                 <a href="{{ url_for('logout') }}">Logout</a>
