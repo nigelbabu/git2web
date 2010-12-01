@@ -3,7 +3,7 @@
 {% block head %}Add Person{% endblock %}
 {% block body %}
   {% if error %}<p class=error><strong>Error:</strong> {{ error }}{% endif %}
-  <form action="{{ url_for('login') }}" method="post" enctype="multipart/form-data">
+  <form action="{{ url_for('add_persons') }}" method="post" enctype="multipart/form-data">
     <dl>
       <dt>Key File:</dt>
       <dd><input type="file" name="key_file"></dd>

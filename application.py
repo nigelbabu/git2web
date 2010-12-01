@@ -57,15 +57,16 @@ def showpeople():
     return render_template('persons.html', names=list_of_members())
 
 #add people
-@app.route('/people/add')
+@app.route('/people/add', methods=['GET', 'POST'])
 def add_persons():
     if not session.get('logged_in'):
         return redirect(url_for('login'))
     if request.method == 'POST':
         f = request.files['key_file']
-        f.save(app.config['GITOSIS_PATH'] + 'keydir' + secure_filename(f.filename))
+        f.save(app.config['GITOSIS_PATH'] + 'keydir/' + secure_filename(f.filename))
         flash('Key uploaded')
-    return render_template('add_persons')
+        return redirect(url_for('showpeople'))
+    return render_template('add_persons.html')
 
 #login
 @app.route('/login', methods=['GET', 'POST'])
