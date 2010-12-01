@@ -136,6 +136,7 @@ td.actions a {
 	text-shadow: #fff 0px 1px 0px;
 	min-width: 0;
 	margin-right: 5px;
+	text-align: center;
 }
 input[type=submit]:hover,
 div.actions ul li a:hover,
