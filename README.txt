@@ -11,7 +11,7 @@ This is the point where git2web was born.  I was talking in #cakephp with a few 
 I thought of doing this in PHP first.  But I trust python for stuff like this better.  And I wanted to build a webapp in python anyway.  I tried django but it was too big for this.  I'd envisioned this to be used only in an intranet most of the time.  The first release would be oriented to that.  I'd add more security layers in later releases.
 
 ## How to install?
-git2web is written in Flask, a micro webdevelopment framework.  Take a look at the Flask wiki to see the various deployment options.  I'd be deploying as a cgi, but feel free to chose your own.
+git2web is written in Flask, a micro webdevelopment framework.  Take a look at the Flask wiki to see the [various deployment options](http://flask.pocoo.org/docs/deploying/ "Deploying Flask").  I'd be deploying as a cgi, but feel free to chose your own.
 
 ## Status
 All configuration can now be read from the web.  New key files can be upload.  That's all there is for now.
