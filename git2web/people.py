@@ -10,7 +10,6 @@ def showpeople():
     if not session.get('logged_in'):
         return redirect(url_for('login'))
     names = list_of_members()
-    names.sort()
     return render_template('persons.html', names=names)
 
 #add people

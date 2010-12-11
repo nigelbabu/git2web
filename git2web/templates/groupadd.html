@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block title %}{{group}}{% endblock %}
+{% block head %}{{group}}{% endblock %}
+{% block body %}
+  {% if error %}<p class=error><strong>Error:</strong> {{ error }}{% endif %}
+  <form action="{{ url_for('add_project_person', groupname=group) }}" method="post">
+    <dl>
+      <dt>Person Name:</dt>
+      <dd>
+      <select name="keynames">
+        <option value="0">Please select a value</option>
+        {% for name in members %}
+        <option value="{{ name }}">{{ name }}</option>
+        {% endfor %}
+      </select>
+      </dd>
+      <dd>&nbsp;</dd>
+      <dd><a href="{{ url_for('showpeople') }}" class="cancel">Cancel</a><input type="submit" value="Add"></dd>
+      <dd>&nbsp;</dd>
+    </dl>
+  </form>
+{% endblock %}

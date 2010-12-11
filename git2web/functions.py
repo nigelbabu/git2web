@@ -9,4 +9,6 @@ def path_to_conf():
 def list_of_members():
     path = app.config['GITOSIS_PATH']
     path_to_key = os.path.join(path, 'keydir')
-    return map(lambda x: x.split('.pub')[0], os.listdir(path_to_key))
+    member_names = map(lambda x: x.split('.pub')[0], os.listdir(path_to_key))
+    member_names.sort()
+    return member_names
