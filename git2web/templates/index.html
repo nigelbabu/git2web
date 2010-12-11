@@ -8,7 +8,7 @@
                     <th>Group</th>
                     <th>Actions</th>
                 <tr>
-            {% for section in config.sections() if section not in ['group gitosis-admin','gitosis'] %}
+            {% for section in config if section not in ['group gitosis-admin','gitosis'] %}
             <tr>
                 <td>{{loop.index}}</td>
                 <td>{{ section.partition('group ').2 }}</a></td>

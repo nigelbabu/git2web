@@ -1,6 +1,6 @@
 from git2web import app
 from git2web.functions import path_to_conf
-import ConfigParser
+from configobj import ConfigObj
 from flask import redirect, g, session, url_for, render_template, flash
      
 # index, project list
@@ -8,8 +8,8 @@ from flask import redirect, g, session, url_for, render_template, flash
 def index():
     if not session.get('logged_in'):
         return redirect(url_for('login'))
-    config = ConfigParser.ConfigParser()
-    config.read(path_to_conf())
+    config = ConfigObj(path_to_conf())
+    print config
     return render_template('index.html', config=config)
 
 # individual groups
