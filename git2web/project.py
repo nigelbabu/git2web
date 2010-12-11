@@ -17,9 +17,9 @@ def showgroup(groupname):
     if not session.get('logged_in'):
         return redirect(url_for('login'))
     config = ConfigObj(path_to_conf())
-    print config
     section = 'group ' + groupname
-#    if section not in config:
-#        flash('Group not found')
-#        return redirect(url_for('index')
-    return render_template('group.html', config=config,  group=groupname, section=section)
+    if section not in config:
+        flash('Group not found')
+        return redirect(url_for('index')
+    else:
+        return render_template('group.html', config=config,  group=groupname, section=section)
