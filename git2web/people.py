@@ -2,7 +2,8 @@ from git2web import app
 from git2web.functions import list_of_members
 from werkzeug import secure_filename
 from flask import session, redirect, g, url_for, render_template, \
-     flash
+     flash, request
+import os
 
 #display people
 @app.route('/people')
