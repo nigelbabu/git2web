@@ -8,7 +8,7 @@
                 <th>Name</th>
                 <th>Actions</th>
             </tr>
-    {% for member in config.get(section, 'members').split() %}
+    {% for member in config[section]['members'].split() %}
     <tr>
         <td>{{ loop.index }}</td>
         <td>{{ member }}</td>

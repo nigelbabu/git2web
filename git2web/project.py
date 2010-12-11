@@ -9,7 +9,6 @@ def index():
     if not session.get('logged_in'):
         return redirect(url_for('login'))
     config = ConfigObj(path_to_conf())
-    print config
     return render_template('index.html', config=config)
 
 # individual groups
@@ -17,10 +16,10 @@ def index():
 def showgroup(groupname):
     if not session.get('logged_in'):
         return redirect(url_for('login'))
-    config = ConfigParser.ConfigParser()
-    config.read(path_to_conf())
+    config = ConfigObj(path_to_conf())
+    print config
     section = 'group ' + groupname
-    if section not in config.sections():
-        flash('Group not found')
-        return redirect('/')
+#    if section not in config:
+#        flash('Group not found')
+#        return redirect(url_for('index')
     return render_template('group.html', config=config,  group=groupname, section=section)
