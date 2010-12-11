@@ -43,12 +43,22 @@ def remove_project_person(groupname, person):
 #add person to project
 @app.route('/group/<groupname>/add', methods=['GET', 'POST'])
 def add_project_person(groupname):
+    config = ConfigObj(path_to_conf())
+    section = 'group ' + groupname
+    existing_members = config[section]['members'].split()
     if request.method == 'POST':
-        pass
+        if request.form['keynames'] != '0':
+            existing_members = config[section]['members'].split()
+            existing_members.append(request.form['keynames'])
+            config[section]['members'] = ' '.join(existing_members)
+            print config[section]['members']
+            try:
+                config.write()
+                flash('Added person')
+            except:
+                flash('Could not add person')
+        return redirect(url_for('showgroup', groupname=groupname))
     else:
-        config = ConfigObj(path_to_conf())
-        section = 'group ' + groupname
-        existing_members = config[section]['members'].split()
         members = filter(lambda x: x not in existing_members, list_of_members())
         if not members:
             flash('No new members')
